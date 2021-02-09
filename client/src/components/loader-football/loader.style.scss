@@ -1,0 +1,101 @@
+@import "../../general.style.scss";
+
+@mixin change-font-padding($fon, $pad, $mar) {
+  font-size: $fon;
+  padding: &pad;
+  margin: $mar;
+}
+
+.loader-container {
+  width: 100vw;
+  height: 100vh;
+
+  // coloring (background, font color)
+  color: #ffd700;
+  @include main-background();
+
+  // display property
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  // positioning
+  position: relative;
+
+  // each div inside the loader-container
+  & div {
+    // font property
+    font : {
+      weight: 700;
+      size: 2.5rem;
+    }
+
+    padding: 5px;
+
+    // positioning
+    position: relative;
+    top: 0;
+
+    // effecting
+    text-shadow: 2px 2px 2px #000;
+
+    // property nesting
+    animation: {
+      name: moveDiv;
+      duration: 0.7s;
+      iteration-count: infinite;
+      direction: alternate;
+      timing-function: ease-out;
+    }
+
+    @media only screen and (min-width: $small) {
+      @include change-font-padding(3.5rem, 5px, 5px);
+    }
+
+    @media only screen and (min-width: $medium) {
+      @include change-font-padding(4.5rem, 15px, 15px);
+    }
+
+    @media only screen and (min-width: $large) {
+      @include change-font-padding(5.5rem, 25px, 25px);
+    }
+  }
+
+  & .f {
+    animation-delay: 0.1s;
+  }
+
+  & .o1 {
+    animation-delay: 0.4s;
+  }
+
+  & .o2 {
+    animation-delay: 0.6s;
+  }
+  & .t {
+    animation-delay: 0.2s;
+  }
+  & .b {
+    animation-delay: 0.7s;
+  }
+  & .a {
+    animation-delay: 0.8s;
+  }
+  & .l1 {
+    animation-delay: 0.5s;
+  }
+  & .l2 {
+    animation-delay: 0.3s;
+  }
+
+  @keyframes moveDiv {
+    0% {
+      top: 0;
+    }
+
+    100% {
+      top: -100px;
+    }
+  }
+}

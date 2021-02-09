@@ -1,0 +1,124 @@
+@import "../../general.style.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.modal-wrapper {
+  width: 80%;
+  max-width: 800px;
+  max-height: 50%;
+  z-index: 10;
+  padding: 10px;
+  border-radius: 8px;
+  overflow: auto;
+
+  // coloring
+  background: #fff;
+
+  // positioning
+  position: fixed;
+
+  // transform
+  transition: all 0.5s ease;
+
+  & h2 {
+    font-size: 1rem;
+    padding-bottom: 5px;
+    padding-left: 12px;
+    @include main-font();
+  }
+
+  & .modal-body {
+    padding: 5px;
+
+    // display properties
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & .modal-icon {
+      width: 50%;
+
+      // display properties
+      // to center the svg
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    & .modal-content {
+      width: 100%;
+      font-size: 12px;
+
+      // display properties
+      display: flex;
+      flex-direction: column;
+
+      & .info {
+        width: 100%;
+        padding-bottom: 10px;
+
+        // display properties
+        display: flex;
+        flex-direction: row;
+
+        & .info-left {
+          flex: 1;
+        }
+
+        & .info-right {
+          flex: 1;
+          @include main-font();
+
+          @media only screen and (min-width: $small) {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+
+    @media only screen and (min-width: $small) {
+      flex-direction: row;
+    }
+  }
+}
+
+// /* Extra small devices (phones, 600px and down) */
+// @media only screen and (max-width: $small) {
+//   .modal-wrapper {
+//     margin: 5rem;
+
+//     & .modal-body {
+//       flex-direction: column;
+//       justify-content: start;
+//       align-items: center;
+
+//       & .modal-icon {
+//         width: 50%;
+//         margin-bottom: 20px;
+//       }
+
+//       & .modal-content {
+//         width: 90%;
+//         font-size: 14px;
+//         font-weight: 600;
+
+//         & .modal-content-info > .info > .info-left {
+//           flex: 1;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// /* Small devices (portrait tablets and large phones, 600px and up) */
+// @media only screen and (min-width: $small) {
+// }
+
+// /* Large devices (laptops/desktops, 992px and up) */
+// @media only screen and (min-width: $large) {
+// }

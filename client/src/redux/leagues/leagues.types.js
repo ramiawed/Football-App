@@ -1,0 +1,8 @@
+const LeaguesActionTypes = {
+  GET_LEAGUE_START: "GET_LEAGUE_START",
+  GET_LEAGUE_SUCCESS: "GET_LEAGUE_SUCCESS",
+  GET_LEAGUE_FAIL: "GET_LEAGUE_FAIL",
+  SET_SELECTED_LEAGUE: "SET_SELECTED_LEAGUE",
+};
+
+export default LeaguesActionTypes;

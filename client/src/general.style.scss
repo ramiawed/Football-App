@@ -1,0 +1,47 @@
+/* Extra small devices (phones, 600px and down) */
+// @media only screen and (max-width: 320px)
+$xsmall: 320px;
+/* Small devices (portrait tablets and large phones, 600px and up) */
+// @media only screen and (min-width: 481px)
+$small: 481px;
+/* Medium devices (landscape tablets, 769px and up) */
+// @media only screen and (min-width: 769px)
+$medium: 769px;
+/* Large devices (laptops/desktops, 1025px and up) */
+// @media only screen and (min-width: 1025px)
+$large: 1025px;
+/* Extra large devices (large laptops and desktops, 1201px and up) */
+// @media only screen and (min-width: 1210px)
+$xlarge: 1201px;
+
+// 320px — 480px: Mobile devices
+// 481px — 768px: iPads, Tablets
+// 769px — 1024px: Small screens, laptops
+// 1025px — 1200px: Desktops, large screens
+// 1201px and more —  Extra large screens, TV
+
+/* SMARTPHONES PORTRAIT 
+@media only screen and (min-width: 300px) {
+}
+ SMARTPHONES LANDSCAPE 
+@media only screen and (min-width: 480px) {
+}
+TABLETS PORTRAIT 
+@media only screen and (min-width: 768px) {
+}
+ TABLET LANDSCAPE / DESKTOP 
+@media only screen and (min-width: 1024px) {
+} */
+
+@mixin main-background() {
+  background: rgb(13, 35, 71);
+  background: linear-gradient(
+    to bottom right,
+    rgba(13, 35, 71, 1) 50%,
+    rgba(159, 23, 32, 1) 90%
+  );
+}
+
+@mixin main-font {
+  font-family: "Sriracha", cursive;
+}
