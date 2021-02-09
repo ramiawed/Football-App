@@ -1,11 +1,16 @@
-import "./nav-main-page.style.scss";
-import CONSTANTS from "../../utils/constants.util";
-import { setOptions } from "../../redux/nav-options/nav-options.actions";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
 import { BiMenu } from "react-icons/bi";
-import { useState } from "react";
+import { BsArrowLeftShort } from "react-icons/bs";
+
+import { setOptions } from "../../redux/nav-options/nav-options.actions";
+
+import CONSTANTS from "../../utils/constants.util";
+import "./nav-main-page.style.scss";
 
 function NavMainPage({ league, changeOption }) {
+  let history = useHistory();
   const { option } = useSelector((state) => state.navOptions);
   const [selectedOption, setSelectedOption] = useState(option);
   const [showOptions, setShowOptions] = useState(false);
@@ -16,6 +21,10 @@ function NavMainPage({ league, changeOption }) {
     changeOption(opt);
   };
 
+  const handleBackBtn = () => {
+    history.goBack();
+  };
+
   return (
     <div
       className="nav-main-page-container"
@@ -24,6 +33,9 @@ function NavMainPage({ league, changeOption }) {
       }}
     >
       <div className="nav-main-page-header">
+        <div className="back-btn" onClick={handleBackBtn}>
+          <BsArrowLeftShort />
+        </div>
         <h2>{league.name}</h2>
         <div className="header-options">
           <p>Sign in</p>
