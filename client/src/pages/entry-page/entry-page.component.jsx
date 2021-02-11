@@ -1,26 +1,28 @@
 import { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
-import { getLeaguesAsync } from "../../redux/leagues/leagues.action";
+import { getCompetitionsAsync } from "../../redux/competitions/competitions.action";
 import LeagueItem from "../../components/league-item/league-item.component";
 import "./entry-page.style.scss";
 import Loader from "../../components/loader-football/loader.component";
 
-function EntryPage({ getLeagues }) {
-  const { isLoading, leagues } = useSelector((state) => state.leagues);
+function EntryPage({ getCompetitions }) {
+  const { isLoading, competitions } = useSelector(
+    (state) => state.competitions
+  );
 
   useEffect(() => {
-    if (leagues.length === 0) {
-      getLeagues();
+    if (competitions.length === 0) {
+      getCompetitions();
     }
-  }, [getLeagues, leagues.length]);
+  }, [getCompetitions, competitions.length]);
 
   return (
     <div className="entry-page-container">
-      {isLoading || leagues.length === 0 ? (
+      {isLoading || competitions.length === 0 ? (
         <Loader />
       ) : (
-        leagues.map((league, index) => (
-          <LeagueItem key={index} league={league} />
+        competitions.map((competition, index) => (
+          <LeagueItem key={index} competition={competition} />
         ))
       )}
     </div>
@@ -28,7 +30,7 @@ function EntryPage({ getLeagues }) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  getLeagues: () => dispatch(getLeaguesAsync()),
+  getCompetitions: () => dispatch(getCompetitionsAsync()),
 });
 
 export default connect(null, mapDispatchToProps)(EntryPage);

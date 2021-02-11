@@ -1,0 +1,23 @@
+{ "name": "Eden Hazard", "nationality": "Belgium", "tShritNumber": 7, "born": { "$date": "1991-01-07" }, "photo": "", "position": "Forward", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Sergio Ramos", "nationality": "Spain", "tShritNumber": 4, "born": { "$date": "1986-03-30" }, "photo": "", "position": "Defender", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Karim Benzema", "nationality": "France", "tShritNumber": 9, "born": { "$date": "1987-12-19" }, "photo": "", "position": "Forward", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Vinicius", "nationality": "Brazil", "tShritNumber": 20, "born": { "$date": "2000-07-12" }, "photo": "", "position": "Forward", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Marcelo Vieira", "nationality": "Brazil", "tShritNumber": 12, "born": { "$date": "1988-05-12" }, "photo": "", "position": "Defender", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Rodrygo", "nationality": "Brazil", "tShritNumber": 25, "born": { "$date": "2001-01-09" }, "photo": "", "position": "Forward", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Isco", "nationality": "Spain", "tShritNumber": 22, "born": { "$date": "1992-04-21" }, "photo": "", "position": "Midfielder", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Luka Modric", "nationality": "Croatia", "tShritNumber": 10, "born": { "$date": "1985-09-09" }, "photo": "", "position": "Midfielder", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Raphaël Varane", "nationality": "France", "tShritNumber": 5, "born": { "$date": "1993-04-25" }, "photo": "", "position": "Defender", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Federico Valverde", "nationality": "Uruguay", "tShritNumber": 15, "born": { "$date": "1998-07-22" }, "photo": "", "position": "Defender", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Thibaut Courtois", "nationality": "Belgium", "tShritNumber": 1, "born": { "$date": "1992-05-11" }, "photo": "", "position": "Goalkeeper", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Toni Kroos", "nationality": "German", "tShritNumber": 8, "born": { "$date": "1990-01-04" }, "photo": "", "position": "Midfielder", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Mariano", "nationality": "Dominican", "tShritNumber": 18, "born": { "$date": "1993-08-01" }, "photo": "", "position": "Forward", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Marco Asensio", "nationality": "Spain", "tShritNumber": 11, "born": { "$date": "1996-01-21" }, "photo": "", "position": "Forward", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Casemiro", "nationality": "Brazil", "tShritNumber": 14, "born": { "$date": "1992-02-23" }, "photo": "", "position": "Midfielder", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Marvin Park", "nationality": "Spain", "tShritNumber": 28, "born": { "$date": "2000-07-03" }, "photo": "", "position": "Midfielder", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Ferland Mendy", "nationality": "France", "tShritNumber": 23, "born": { "$date": "1995-06-08" }, "photo": "", "position": "Defender", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Lucas Vázquez", "nationality": "Spain", "tShritNumber": 17, "born": { "$date": "1991-07-01" }, "photo": "", "position": "Midfielder", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Dani Carvajal", "nationality": "Spain", "tShritNumber": 2, "born": { "$date": "1991-01-11" }, "photo": "", "position": "Defender", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Andriy Lunin", "nationality": "Ukranie", "tShritNumber": 12, "born": { "$date": "1999-02-11" }, "photo": "", "position": "Goalkeeper", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Sergio Arribas", "nationality": "Spain", "tShritNumber": 30, "born": { "$date": "2001-09-30" }, "photo": "", "position": "Midfielder", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Álvaro Odriozola", "nationality": "Spain", "tShritNumber": 19, "born": { "$date": "1995-12-14" }, "photo": "", "position": "Defender", "teamId": {"$oid": "6019b6529709a96a44836d07"} }
+{ "name": "Diego Altube", "nationality": "Spain", "tShritNumber": 26, "born": { "$date": "2000-02-22" }, "photo": "", "position": "Goalkeeper", "teamId": {"$oid": "6019b6529709a96a44836d07"} }

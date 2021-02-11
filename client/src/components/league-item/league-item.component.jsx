@@ -1,13 +1,13 @@
 import "./league-item.style.scss";
 import { withRouter } from "react-router-dom";
-import { setSelectedLeague } from "../../redux/leagues/leagues.action";
+import { setSelectedCompetition } from "../../redux/competitions/competitions.action";
 import { connect } from "react-redux";
 import SVG from "../svg-container/svg.component";
 
-function LeagueItem({ league, history, setSelectedLeague }) {
+function LeagueItem({ competition, history, setSelectedCompetition }) {
   // when click on league-item
   const goToMainPage = () => {
-    setSelectedLeague(league);
+    setSelectedCompetition(competition);
     history.push("/league");
   };
 
@@ -16,24 +16,26 @@ function LeagueItem({ league, history, setSelectedLeague }) {
       className="league-item-container"
       onClick={goToMainPage}
       style={{
-        backgroundColor: league.color,
+        backgroundColor: competition.color,
       }}
     >
       <div className="motion"></div>
-      <div className="league-item-name">{league.name}</div>
+      <div className="league-item-name">{competition.name}</div>
 
-      <SVG
-        className="league-item-logo"
-        src={`/leagues/${league.name}.svg`}
-        width="100%"
-        height="170px"
-      />
+      {competition.logo && (
+        <SVG
+          className="league-item-logo"
+          src={`/leagues/${competition.logo}`}
+          width="100%"
+          height="170px"
+        />
+      )}
     </div>
   );
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  setSelectedLeague: (l) => dispatch(setSelectedLeague(l)),
+  setSelectedCompetition: (l) => dispatch(setSelectedCompetition(l)),
 });
 
 export default withRouter(connect(null, mapDispatchToProps)(LeagueItem));

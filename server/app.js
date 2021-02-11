@@ -1,8 +1,8 @@
 import express, { json } from "express";
 import cors from "cors";
-import LeagueRouter from "./routes/leagueRouter.js";
 import TeamRouter from "./routes/teamRoute.js";
 import globalErrorHandler from "./controllers/errorController.js";
+import CompetitionRouter from "./routes/competitionRouter.js";
 
 const app = express();
 
@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.static("public"));
 
 // ROUTERS
-app.use("/api/v1/leagues", LeagueRouter);
+app.use("/api/v1/competitions", CompetitionRouter);
 app.use("/api/v1/teams", TeamRouter);
 
 // GLOBAL ERROR HANDLER
