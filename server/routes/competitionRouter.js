@@ -13,7 +13,7 @@ const CompetitionRouter = Router();
 // GET ALL THE COMPETITIONS OR ADD A NEW ONE
 CompetitionRouter.route("/").get(getAllCompetitions).post(addCompetition);
 
-// GET THE COMPETITION SPECIFIED BY ID OR DELETE IT
+// GET, DELETE, UPDATE THE COMPETITION SPECIFIED BY ID
 CompetitionRouter.route("/:competitionId")
   .get(getCompetitionById)
   .patch(updateCompetition)
