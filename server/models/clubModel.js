@@ -52,7 +52,13 @@ var clubSchema = new Schema({
     type: String,
     trim: true,
   },
-  // seasons: [{ type: Schema.Types.ObjectId, required: true, ref: "seasons" }],
+  seasons: [
+    {
+      type: Schema.Types.ObjectId,
+      // required: true,
+      ref: "Season",
+    },
+  ],
 });
 
 clubSchema.pre("save", function (next) {

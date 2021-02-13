@@ -3,6 +3,8 @@ import cors from "cors";
 import globalErrorHandler from "./controllers/errorController.js";
 import CompetitionRouter from "./routes/competitionRouter.js";
 import clubRouter from "./routes/clubRouter.js";
+import playerRouter from "./routes/playerRouter.js";
+import seasonRouter from "./routes/seasonRouter.js";
 
 const app = express();
 
@@ -21,7 +23,8 @@ app.use(express.static("public"));
 // ROUTERS
 app.use("/api/v1/competitions", CompetitionRouter);
 app.use("/api/v1/clubs", clubRouter);
-// app.use("/api/v1/teams", TeamRouter);
+app.use("/api/v1/players", playerRouter);
+app.use("/api/v1/seasons", seasonRouter);
 
 // GLOBAL ERROR HANDLER
 app.use(globalErrorHandler);
