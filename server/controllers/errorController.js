@@ -52,6 +52,8 @@ function sendErrorProd(err, res) {
   }
 }
 
+// GLOBAL ERROR HANDLER FUNCTION THAT TAKES 4 PARAMETERS
+// (ERROR, REQUEST, RESPONSE, NEXT)
 function globalErrorHandler(err, req, res, next) {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";

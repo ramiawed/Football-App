@@ -1,65 +1,65 @@
-import TeamsTypes from "./teams.types";
+import ClubsTypes from "./clubs.types";
 
 const INITIAL_STATE = {
-  // store the teams retrieved from DB
-  teams: [],
-  // determine if the teams are loading from DB or Not
+  // store the clubs retrieved from DB
+  clubs: [],
+  // determine if the clubs are loading from DB or Not
   isLoading: false,
   // store the error object during the loading stage
   error: null,
 
   /* 
-   determine if the teams changed(in the DB, or the use leave the league page), 
+   determine if the clubs changed(in the DB, or the use leave the league page), 
    this help to do not fetch the data from DB when you are in the same league
    but navigate through its options
 
    this options should change when
    1- the user back to EntryPage
-   2- DB notify that the teams changed in DB 
+   2- DB notify that the clubs changed in DB 
   */
   hasChanged: true,
 
   // store the selected team
-  selectedTeam: null,
+  selectedClub: null,
 };
 
-const TeamsReducer = (state = INITIAL_STATE, action) => {
+const ClubsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case TeamsTypes.GET_TEAMS_START:
+    case ClubsTypes.GET_CLUBS_START:
       return {
         ...state,
         isLoading: true,
       };
 
-    case TeamsTypes.GET_TEAMS_SUCCESS:
+    case ClubsTypes.GET_CLUBS_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        teams: action.payload,
+        clubs: action.payload,
         hasChanged: false,
         error: null,
       };
 
-    case TeamsTypes.GET_TEAMS_FAIL:
+    case ClubsTypes.GET_CLUBS_FAIL:
       return {
         ...state,
         isLoading: false,
         error: action.payload,
       };
 
-    case TeamsTypes.SET_SELECTED_TEAM:
+    case ClubsTypes.SET_SELECTED_CLUB:
       return {
         ...state,
-        selectedTeam: action.payload,
+        selectedClub: action.payload,
       };
 
-    case TeamsTypes.RESET_SELECTED_TEAM:
+    case ClubsTypes.RESET_SELECTED_CLUB:
       return {
         ...state,
-        selectedTeam: null,
+        selectedClub: null,
       };
 
-    case TeamsTypes.TEAMS_HAS_CHANGE:
+    case ClubsTypes.CLUBS_HAS_CHANGE:
       return {
         ...state,
         hasChanged: true,
@@ -70,4 +70,4 @@ const TeamsReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default TeamsReducer;
+export default ClubsReducer;

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
 import { getCompetitionsAsync } from "../../redux/competitions/competitions.action";
-import LeagueItem from "../../components/league-item/league-item.component";
+import CompetitionItem from "../../components/competition-item/competition.component";
 import "./entry-page.style.scss";
 import Loader from "../../components/loader-football/loader.component";
 
@@ -22,7 +22,7 @@ function EntryPage({ getCompetitions }) {
         <Loader />
       ) : (
         competitions.map((competition, index) => (
-          <LeagueItem key={index} competition={competition} />
+          <CompetitionItem key={index} competition={competition} />
         ))
       )}
     </div>

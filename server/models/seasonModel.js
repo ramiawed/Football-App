@@ -28,11 +28,16 @@ const seasonSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Competition",
     },
-    teams: [
+    competition: {
+      type: Schema.Types.ObjectId,
+      ref: "Competition",
+      required: true,
+    },
+    clubs: [
       {
         type: Schema.Types.ObjectId,
         // required: true,
-        ref: "Team",
+        ref: "club",
       },
     ],
   },

@@ -36,7 +36,7 @@ const competitionsReducer = (state = INITIAL_STATE, action) => {
         error: action.payload,
       };
 
-    case CompetitionsActionTypes.SET_COMPETITION_LEAGUE:
+    case CompetitionsActionTypes.SET_SELECTED_COMPETITION:
       return {
         ...state,
         selectedCompetition: action.payload,

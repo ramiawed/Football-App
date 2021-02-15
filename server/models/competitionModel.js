@@ -14,7 +14,8 @@ const competitionSchema = new Schema(
       type: String,
     },
     currentSeason: {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: "Season",
     },
     numberOfAvailableSeasons: {
       type: Number,
@@ -24,6 +25,12 @@ const competitionSchema = new Schema(
       type: String,
       default: "rgb(57, 109, 191)",
     },
+    seasons: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Season",
+      },
+    ],
   },
   {
     timestamps: true,

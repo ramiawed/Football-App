@@ -1,5 +1,6 @@
 import Competition from "../models/competitionModel.js";
 import Season from "../models/seasonModel.js";
+import Club from "../models/clubModel.js";
 import AppError from "../utils/appError.js";
 import catchAsync from "../utils/catchAsync.js";
 import { filterFields } from "../utils/functions.js";
@@ -52,6 +53,64 @@ export const getCompetitionById = catchAsync(async (req, res, next) => {
     status: "success",
     data: {
       competition,
+    },
+  });
+});
+
+// GET A COMPETITION'S SEASONS SPECIFIED BY ID
+export const getCompetitionSeason = catchAsync(async (req, res, next) => {
+  // GET THE COMPETITION ID FROM REQUEST PARAMETERS
+  const competitionId = req.params.competitionId;
+
+  //CHECK IF THE COMPETITION ID NOT NULL
+  if (!competitionId) {
+    return next(new AppError("Please enter a competition id"));
+  }
+
+  // FIND THE COMPETITION SPECIFIED BY ID
+  // MONGOOSE WILL THROW A CAST ERROR IF THE COMPETITION ID IS NOT AN ObjectID
+  const competition = await Competition.findById(competitionId);
+
+  // IF THERE IS NO SUCH COMPETITION
+  // THROW AN ERROR (NOT FOUND)
+  if (!competition) {
+    return next(new AppError("No competition found", 404));
+  }
+
+  // IF SUCCESS RETURN THE COMPETITION
+  res.status(200).json({
+    status: "success",
+    data: {
+      seasons: competition.seasons,
+    },
+  });
+});
+
+// GET A COMPETITION'S CLUBS
+export const getCompetitionClubs = catchAsync(async (req, res, next) => {
+  // GET THE COMPETITION ID FROM REQUEST PARAMETERS
+  const competitionId = req.params.competitionId;
+
+  //CHECK IF THE COMPETITION ID NOT NULL
+  if (!competitionId) {
+    return next(new AppError("Please enter a competition id"));
+  }
+
+  // FIND THE COMPETITION'S CLUB SPECIFIED BY ID
+  // MONGOOSE WILL THROW A CAST ERROR IF THE COMPETITION ID IS NOT AN ObjectID
+  const clubs = await Club.find({ competition: competitionId });
+
+  // IF THERE IS NO SUCH CLUBS
+  // THROW AN ERROR (NOT FOUND)
+  if (!clubs) {
+    return next(new AppError("No clubs found", 404));
+  }
+
+  // IF SUCCESS RETURN THE COMPETITION
+  res.status(200).json({
+    status: "success",
+    data: {
+      clubs,
     },
   });
 });
@@ -132,7 +191,7 @@ export const deleteCompetition = catchAsync(async (req, res, next) => {
 
   //CHECK IF THE COMPETITION ID NOT NULL
   if (!competitionId) {
-    return next(new Error("Please enter a competition id"));
+    return next(new AppError("Please enter a competition id"));
   }
 
   // FIND THE COMPETITION BY ID AND IF IT ANY, DELETE IT
@@ -147,6 +206,43 @@ export const deleteCompetition = catchAsync(async (req, res, next) => {
   // IF DELETE SUCCESS, RETURN NO CONTENT
   res.status(200).json({
     status: "success",
+  });
+});
+
+// SET THE CURRENT SEASON FOR COMPETITION
+export const setCurrentSeason = catchAsync(async (req, res, next) => {
+  // GET THE COMPETITION ID FROM THE REQUEST PARAMETERS
+
+  // GET THE SEASON ID FROM THE REQUEST PARAMETERS
+  const { competitionId, seasonId } = req.params;
+
+  if (!competitionId) {
+    return next(new AppError("Please enter a competition id", 400));
+  }
+
+  if (!seasonId) {
+    return next(new AppError("Please enter a season id", 400));
+  }
+
+  const competition = await Competition.findByIdAndUpdate(
+    competitionId,
+    { currentSeason: seasonId },
+    { new: true, runValidators: true }
+  );
+
+  // IF THERE IS NO COMPETITION BY THAT ID
+  // THROW AN ERROR
+  if (!competition) {
+    return next(new AppError("No competition found", 404));
+  }
+
+  // IF UPDATE SUCCESS,
+  // RETURN THE UPDATED COMPETITION
+  res.status(200).json({
+    status: "success",
+    data: {
+      competition,
+    },
   });
 });
 

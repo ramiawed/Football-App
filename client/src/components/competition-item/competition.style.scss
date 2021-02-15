@@ -1,6 +1,6 @@
 @import "../../general.style.scss";
 
-.league-item-container {
+.competition-item-container {
   width: 98%;
   min-height: 48vh;
   margin: 5px;
@@ -39,7 +39,7 @@
     transition: all 2s ease-in-out;
   }
 
-  & .league-item-name {
+  & .competition-item-name {
     text-align: center;
 
     // positioning
@@ -61,7 +61,7 @@
 
     & .motion {
       animation: {
-        name: league-item-motion;
+        name: competition-item-motion;
         duration: 4s;
         timing-function: ease-in-out;
         fill-mode: forwards;
@@ -71,13 +71,13 @@
     }
   }
 
-  // media query from league-item-container
+  // media query from competition-item-container
   @media screen and (min-width: $medium) {
     width: 48%;
   }
 }
 
-@keyframes league-item-motion {
+@keyframes competition-item-motion {
   0% {
     transform: translateX(-130%) skewX(-20deg);
   }

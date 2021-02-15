@@ -27,6 +27,8 @@ app.use("/api/v1/players", playerRouter);
 app.use("/api/v1/seasons", seasonRouter);
 
 // GLOBAL ERROR HANDLER
+// GLOBAL ERROR HANDLER HAVE 4 PARAMETERS
+// (ERROR, REQUEST, RESPONSE, NEXT)
 app.use(globalErrorHandler);
 
 export default app;

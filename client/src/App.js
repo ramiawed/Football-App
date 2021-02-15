@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <Switch>
         <Route path="/" exact component={EntryPage} />
-        <Route path="/league" exact component={MainPage} />
+        <Route path="/competition" exact component={MainPage} />
       </Switch>
     </div>
   );

@@ -6,6 +6,8 @@ import {
   addCompetition,
   deleteCompetition,
   updateCompetition,
+  getCompetitionSeason,
+  getCompetitionClubs,
 } from "../controllers/competitionController.js";
 
 const CompetitionRouter = Router();
@@ -18,6 +20,13 @@ CompetitionRouter.route("/:competitionId")
   .get(getCompetitionById)
   .patch(updateCompetition)
   .delete(deleteCompetition);
+
+// UPDATE THE CURRENT SEASON FOR A SPECIFIC COMPETITION
+CompetitionRouter.patch("/:competitionId/season/:seasonId");
+
+// GET ALL THE COMPETITION'S SEASONS
+CompetitionRouter.route("/:competitionId/seasons").get(getCompetitionSeason);
+CompetitionRouter.route("/:competitionId/clubs").get(getCompetitionClubs);
 
 // GET THE CURRENT SEASON FOR A SPECIFIC COMPETITION
 CompetitionRouter.get(

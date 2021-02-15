@@ -1,6 +1,6 @@
 @import "../../general.style.scss";
 
-.team-container {
+.club-container {
   @include main-font();
   width: 90%;
   padding: 10px;
@@ -16,7 +16,7 @@
   // transform
   transition: all 0.5s;
 
-  & .team-name {
+  & .club-name {
     padding-top: 5px;
     font-weight: 500;
   }

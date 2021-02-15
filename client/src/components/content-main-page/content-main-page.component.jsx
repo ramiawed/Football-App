@@ -3,7 +3,7 @@ import "./content-main-page.style.scss";
 import Standings from "../standings/standings.component";
 import Fixtures from "../fixtures/fixtures.component";
 import News from "../news/news.component";
-import Teams from "../teams/teams.component";
+import Clubs from "../clubs/clubs.component";
 import Statistics from "../statistics/statistics.component";
 import CONSTANTS from "../../utils/constants.util";
 
@@ -22,7 +22,7 @@ function ContentMainPage() {
         return <News />;
 
       case CONSTANTS.TEAMS:
-        return <Teams />;
+        return <Clubs />;
 
       case CONSTANTS.STATISTICS:
         return <Statistics />;
