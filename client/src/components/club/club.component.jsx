@@ -2,8 +2,10 @@ import { connect, useSelector } from "react-redux";
 import SVG from "../svg-container/svg.component";
 import "./club.style.scss";
 import { setSelectedClub } from "../../redux/clubs/clubs.actions";
+import { useHistory } from "react-router-dom";
 
 function Club({ club, showDetails, selectClub }) {
+  const history = useHistory();
   const { selectedCompetition } = useSelector((state) => state.competitions);
 
   return (
@@ -14,7 +16,8 @@ function Club({ club, showDetails, selectClub }) {
       }}
       onClick={() => {
         selectClub(club);
-        showDetails();
+        // showDetails();
+        history.push("/club");
       }}
     >
       <SVG

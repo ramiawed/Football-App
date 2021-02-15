@@ -3,16 +3,19 @@ import { useHistory } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
 import { BiMenu } from "react-icons/bi";
 import { BsArrowLeftShort } from "react-icons/bs";
-
 import { setOptions } from "../../redux/nav-options/nav-options.actions";
 
-import CONSTANTS from "../../utils/constants.util";
-import "./nav-main-page.style.scss";
+import "./nav.style.scss";
 
-function NavMainPage({ league, changeOption }) {
+function Nav({ component, changeOption, options }) {
   let history = useHistory();
+
   const { option } = useSelector((state) => state.navOptions);
+
+  // use in small screen to show which option the use choose
   const [selectedOption, setSelectedOption] = useState(option);
+
+  // use in small screen to show or hide the options in the nav-menu
   const [showOptions, setShowOptions] = useState(false);
 
   const handleChangeOption = (opt) => {
@@ -29,14 +32,14 @@ function NavMainPage({ league, changeOption }) {
     <div
       className="nav-main-page-container"
       style={{
-        backgroundColor: `${league.color}`,
+        backgroundColor: `${component.color}`,
       }}
     >
       <div className="nav-main-page-header">
         <div className="back-btn" onClick={handleBackBtn}>
           <BsArrowLeftShort />
         </div>
-        <h2>{league.name}</h2>
+        <h2>{component.name}</h2>
         <div className="header-options">
           <p>Sign in</p>
           <p
@@ -50,6 +53,7 @@ function NavMainPage({ league, changeOption }) {
         </div>
       </div>
 
+      {/* show or hide the selected option based on the screen width */}
       {!showOptions && (
         <div className="selected-option">
           <p>{selectedOption}</p>
@@ -57,48 +61,16 @@ function NavMainPage({ league, changeOption }) {
       )}
 
       <div className={`${showOptions ? "nav-taps-show" : ""} nav-tabs`}>
-        <div
-          className={`${
-            option === CONSTANTS.STANDINGS ? "selected" : ""
-          } nav-tabs-tab`}
-          onClick={() => {
-            handleChangeOption(CONSTANTS.STANDINGS);
-          }}
-        >
-          {CONSTANTS.STANDINGS}
-        </div>
-        <div
-          className={`${
-            option === CONSTANTS.FIXTURES ? "selected" : ""
-          } nav-tabs-tab`}
-          onClick={() => handleChangeOption(CONSTANTS.FIXTURES)}
-        >
-          {CONSTANTS.FIXTURES}
-        </div>
-        <div
-          className={`${
-            option === CONSTANTS.NEWS ? "selected" : ""
-          } nav-tabs-tab`}
-          onClick={() => handleChangeOption(CONSTANTS.NEWS)}
-        >
-          {CONSTANTS.NEWS}
-        </div>
-        <div
-          className={`${
-            option === CONSTANTS.TEAMS ? "selected" : ""
-          } nav-tabs-tab`}
-          onClick={() => handleChangeOption(CONSTANTS.TEAMS)}
-        >
-          {CONSTANTS.TEAMS}
-        </div>
-        <div
-          className={`${
-            option === CONSTANTS.STATISTICS ? "selected" : ""
-          } nav-tabs-tab`}
-          onClick={() => handleChangeOption(CONSTANTS.STATISTICS)}
-        >
-          {CONSTANTS.STATISTICS}
-        </div>
+        {options.map((opt) => (
+          <div
+            className={`${option === opt ? "selected" : ""} nav-tabs-tab`}
+            onClick={() => {
+              handleChangeOption(opt);
+            }}
+          >
+            {opt}
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -108,4 +80,4 @@ const mapDispatchToProps = (dispatch) => ({
   changeOption: (opt) => dispatch(setOptions(opt)),
 });
 
-export default connect(null, mapDispatchToProps)(NavMainPage);
+export default connect(null, mapDispatchToProps)(Nav);

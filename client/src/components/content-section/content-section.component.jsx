@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import "./content-main-page.style.scss";
+import "./content-section.style.scss";
 import Standings from "../standings/standings.component";
 import Fixtures from "../fixtures/fixtures.component";
 import News from "../news/news.component";
@@ -7,7 +7,7 @@ import Clubs from "../clubs/clubs.component";
 import Statistics from "../statistics/statistics.component";
 import CONSTANTS from "../../utils/constants.util";
 
-function ContentMainPage() {
+function ContentSection() {
   const { option } = useSelector((state) => state.navOptions);
 
   const renderComponent = (o) => {
@@ -36,4 +36,4 @@ function ContentMainPage() {
   );
 }
 
-export default ContentMainPage;
+export default ContentSection;
