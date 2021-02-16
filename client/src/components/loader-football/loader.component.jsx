@@ -1,3 +1,5 @@
+// this component is the loader motion in the entry page
+
 import "./loader.style.scss";
 
 function Loader() {

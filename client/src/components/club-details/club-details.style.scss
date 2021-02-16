@@ -1,0 +1,101 @@
+@import "../../general.style.scss";
+
+.club-details {
+  align-items: center;
+  padding: 12px;
+
+  // display properties
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  & .club-details-header {
+    width: 95%;
+    text-align: left;
+    @include main-font();
+    padding-left: 60%;
+    margin-bottom: 10px;
+
+    // animation properties
+    animation-name: animateheader;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+
+    & h2 {
+      margin: 0;
+      padding-bottom: 12px;
+      font-size: 1.2rem;
+      border-bottom-width: 2px;
+      border-bottom-style: solid;
+
+      @media only screen and (min-width: $small) {
+        flex: 2;
+        font-size: 1.4rem;
+      }
+    }
+
+    @keyframes animateheader {
+      0% {
+        padding-left: 60%;
+      }
+
+      100% {
+        padding-left: 12px;
+      }
+    }
+  }
+
+  & .club-details-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 98%;
+
+    @media only screen and (min-width: $medium) {
+      width: 40%;
+    }
+  }
+
+  & .club-details-info {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 98%;
+    font-size: 12px;
+
+    // display properties
+    display: flex;
+    flex-direction: column;
+
+    @media only screen and (min-width: $medium) {
+      width: 58%;
+    }
+
+    & .info {
+      width: 100%;
+      padding-bottom: 10px;
+
+      // display properties
+      display: flex;
+      flex-direction: row;
+
+      & .info-left {
+        flex: 1;
+        padding-left: 10px;
+
+        @media only screen and (min-width: $small) {
+          font-size: 0.8rem;
+        }
+      }
+
+      & .info-right {
+        flex: 1;
+        @include main-font();
+
+        @media only screen and (min-width: $small) {
+          flex: 2;
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+}

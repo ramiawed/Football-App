@@ -1,6 +1,9 @@
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+
+import ContentSection from "../../components/content-section/content-section.component";
 import Nav from "../../components/nav/nav.component";
+
 import CONSTANTS from "../../utils/constants.util";
 import "./club-details-page.style.scss";
 
@@ -16,7 +19,7 @@ const ClubDetailsPage = () => {
         <Redirect to="/" />
       ) : (
         <div
-          className="main-page-container"
+          className="club-details-container"
           style={{
             backgroundColor: `${
               selectedClub.color
@@ -26,6 +29,7 @@ const ClubDetailsPage = () => {
           }}
         >
           <Nav component={selectedClub} options={options} />
+          <ContentSection />
         </div>
       )}
     </>

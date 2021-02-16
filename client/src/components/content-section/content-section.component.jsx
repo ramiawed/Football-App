@@ -1,11 +1,22 @@
+// this component uses to render a component based on the selected option
+// in the nav-options-reducer
+
+// library
 import { useSelector } from "react-redux";
-import "./content-section.style.scss";
+
+// components
 import Standings from "../standings/standings.component";
 import Fixtures from "../fixtures/fixtures.component";
 import News from "../news/news.component";
 import Clubs from "../clubs/clubs.component";
 import Statistics from "../statistics/statistics.component";
+import ClubDetails from "../club-details/club-details.component";
+
+// utils
 import CONSTANTS from "../../utils/constants.util";
+
+// style
+import "./content-section.style.scss";
 
 function ContentSection() {
   const { option } = useSelector((state) => state.navOptions);
@@ -26,14 +37,16 @@ function ContentSection() {
 
       case CONSTANTS.STATISTICS:
         return <Statistics />;
+
+      case CONSTANTS.CLUB_INFO:
+        return <ClubDetails />;
+
       default:
         return <></>;
     }
   };
 
-  return (
-    <div className="content-main-page-container">{renderComponent(option)}</div>
-  );
+  return <div className="content-container">{renderComponent(option)}</div>;
 }
 
 export default ContentSection;

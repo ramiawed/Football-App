@@ -1,11 +1,11 @@
 @import "../../general.style.scss";
 
-.nav-main-page-container {
+.nav-container {
   @include main-font();
 
   color: #fff;
   width: 100%;
-  z-index: 1;
+  z-index: 10;
 
   // positioning
   position: sticky;
@@ -37,7 +37,7 @@
     }
   }
 
-  & .nav-main-page-header {
+  & .nav-header {
     display: flex;
     flex-direction: row;
 
@@ -66,6 +66,7 @@
         display: flex;
         justify-self: center;
         align-items: center;
+        margin: 0;
       }
 
       & .show-nav-option {

@@ -29,7 +29,6 @@ export const getCompetitionsAsync = () => {
 
       dispatch(getCompetitionsSuccess(data.data.competitions));
     } catch (error) {
-      console.log(error);
       dispatch(getCompetitionsFail(error));
     }
   };

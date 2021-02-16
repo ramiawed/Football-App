@@ -24,11 +24,8 @@ export const getClubsAsync = (competitionId) => {
         `/api/v1/competitions/${competitionId}/clubs`
       );
 
-      console.log(data.data.clubs);
-
       dispatch(getClubsSuccess(data.data.clubs));
     } catch (error) {
-      console.log(error);
       dispatch(getClubsFail(error));
     }
   };
