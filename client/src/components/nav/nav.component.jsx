@@ -75,6 +75,7 @@ function Nav({ component, changeOption, options }) {
         <h2>{component.shortName ? component.shortName : component.name}</h2>
         <div className="header-options">
           <p>Sign in</p>
+          <p onClick={() => history.push("/admin")}>Admin</p>
           <p
             className="show-nav-option"
             onClick={() => {

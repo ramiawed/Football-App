@@ -67,6 +67,11 @@
         justify-self: center;
         align-items: center;
         margin: 0;
+        cursor: pointer;
+
+        &:hover {
+          color: rgb(10, 182, 212);
+        }
       }
 
       & .show-nav-option {
