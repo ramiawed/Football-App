@@ -1,75 +1,73 @@
 @import "../../general.style.scss";
 
 .navbar-container {
-  position: sticky;
-  width: 100%;
-  background-color: black;
-  color: white;
-  z-index: 10;
-  font-size: 1rem;
+  // position: sticky;
+  // width: 100%;
+  // background-color: black;
+  // color: white;
+  // z-index: 10;
 
-  // display properties
-  display: flex;
-  flex-direction: column;
+  // // display properties
+  // display: flex;
+  // flex-direction: column;
 
-  @media only screen and (min-width: $small) {
-    font-size: 1.3rem;
-    padding: 0 4px;
-  }
+  // @media only screen and (min-width: $small) {
+  //   padding: 0 4px;
+  // }
 
   & .navbar-header {
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
 
     & .navbar-title {
-      flex: 1;
+      // flex: 1;
     }
 
     & .navbar-icon {
-      font-size: 2rem;
-      cursor: pointer;
+      // font-size: 2rem;
+      // cursor: pointer;
     }
 
     & .navbar-header-option {
-      padding: 0 4px;
-      cursor: pointer;
+      // padding: 0 4px;
+      // cursor: pointer;
     }
 
     & .menu-icon {
-      @media only screen and (min-width: $small) {
-        display: none;
-      }
+      // @media only screen and (min-width: $small) {
+      //   display: none;
+      // }
     }
   }
 
   & .navbar-options {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
+    // display: none;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: stretch;
 
-    @media only screen and (min-width: $small) {
-      flex-direction: row;
-      display: flex;
-    }
+    // @media only screen and (min-width: $small) {
+    //   flex-direction: row;
+    //   display: flex;
+    // }
 
     & .navbar-option {
-      text-align: center;
-      padding: 4px 6px;
-      cursor: pointer;
+      // text-align: center;
+      // padding: 4px 6px;
+      // cursor: pointer;
     }
 
     &.navbar-options-show {
-      display: flex;
+      // display: flex;
     }
   }
 
   & .navbar-selected-option {
-    text-align: center;
-    padding: 4px 6px;
+    // text-align: center;
+    // padding: 4px 6px;
 
-    @media only screen and (min-width: $small) {
-      display: none;
-    }
+    // @media only screen and (min-width: $small) {
+    //   display: none;
+    // }
   }
 }

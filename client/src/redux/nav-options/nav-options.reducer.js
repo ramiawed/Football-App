@@ -2,7 +2,7 @@ import NavOptionsTypes from "./nav-options.types";
 import CONSTANTS from "../../utils/constants.util";
 
 const INITIAL_STATE = {
-  option: CONSTANTS.STANDINGS,
+  competitionOptions: CONSTANTS.STANDINGS,
 };
 
 const navOptionsReducer = (state = INITIAL_STATE, action) => {
@@ -10,7 +10,7 @@ const navOptionsReducer = (state = INITIAL_STATE, action) => {
     case NavOptionsTypes.SET_OPTION:
       return {
         ...state,
-        option: action.payload,
+        competitionOptions: action.payload,
       };
 
     default:

@@ -1,11 +1,21 @@
 const CONSTANTS = {
-  STANDINGS: "Standings",
-  FIXTURES: "Fixtures",
-  TEAMS: "Teams",
-  NEWS: "News",
-  STATISTICS: "Statistics",
+  // COMPETITION NAVIGATION OPTIONS
+  COMPETITION_STANDINGS: "Standings",
+  COMPETITION_FIXTURES: "Fixtures",
+  COMPETITION_TEAMS: "Teams",
+  COMPETITION_NEWS: "News",
+  COMPETITION_STATISTICS: "Statistics",
+
+  // CLUB NAVIGATION OPTIONS
   CLUB_INFO: "Info",
   CLUB_PLAYERS: "Players",
+
+  // ADMIN NAVIGATION OPTIONS
+  ADMIN_COMPETITIONS: "Competitions",
+  ADMIN_CLUBS: "Clubs",
+  ADMIN_PLAYERS: "Players",
+  ADMIN_MATCHES: "Matches",
+  ADMIN_NEWS: "News",
 };
 
 export default CONSTANTS;
