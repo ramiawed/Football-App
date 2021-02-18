@@ -8,7 +8,7 @@ import { BiMenu } from "react-icons/bi";
 import { BsArrowLeftShort } from "react-icons/bs";
 
 // actions
-import { setOptions } from "../../redux/nav-options/nav-options.actions";
+import { setOption } from "../../redux/nav-options/nav-options.actions";
 
 // utils
 import CONSTANTS from "../../utils/constants.util";
@@ -113,7 +113,7 @@ function Nav({ component, changeOption, options }) {
 
 const mapDispatchToProps = (dispatch) => ({
   // FIRE AN ACTION TO CHANGE THE OPTION TO SELECTED ONE
-  changeOption: (opt) => dispatch(setOptions(opt)),
+  changeOption: (proprety, opt) => dispatch(setOption(proprety,opt)),
 });
 
 export default connect(null, mapDispatchToProps)(Nav);

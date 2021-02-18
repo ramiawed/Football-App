@@ -128,14 +128,12 @@ function NavAdmin({
   );
 
   return (
-    // <div className="navbar-container">
     <NavBarContainer
       bgColor={bgColor}
       foreColor={foreColor}
       fontFamily={fontFamily}
       className="navbar-container"
     >
-      {/* Header section */}
       <NavBarHeader className="navbar-header">
         <BsArrowLeftShortStyled
           hoverColor={hoverColor}
@@ -160,7 +158,6 @@ function NavAdmin({
           onClick={() => setShowOptions(!showOptions)}
         />
       </NavBarHeader>
-      {/* End of header section  */}
 
       {!showOptions ? (
         <NavBarSelectedOption
@@ -170,10 +167,10 @@ function NavAdmin({
           {selectedOption}
         </NavBarSelectedOption>
       ) : (
-        <></>
+        null
       )}
 
-      {/* Options section */}
+      
       <NavbarOptions
         showOptions={showOptions}
         className={`${showOptions ? "navbar-options-show" : ""} navbar-options`}
@@ -188,7 +185,6 @@ function NavAdmin({
                 onClick={() => {
                   setSelectedOption(option);
                   setShowOptions(false);
-                  // this method change the option in the navOptions reducer
                   onChangeNavOption(option);
                 }}
               >
@@ -197,7 +193,6 @@ function NavAdmin({
             ))
           : null}
       </NavbarOptions>
-      {/* End of options section */}
     </NavBarContainer>
   );
 }

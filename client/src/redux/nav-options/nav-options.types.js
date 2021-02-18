@@ -1,5 +1,7 @@
 const NavOptionsTypes = {
-  SET_OPTION: "SET_OPTION",
+  SET_COMPETITION_OPTION: "SET_COMPETITION_OPTION",
+  SET_CLUB_OPTION: "SET_CLUB_OPTION",
+  SET_ADMIN_OPTION: "SET_ADMIN_OPTION",
 };
 
 export default NavOptionsTypes;

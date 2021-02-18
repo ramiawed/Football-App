@@ -18,35 +18,60 @@ import CONSTANTS from "../../utils/constants.util";
 // style
 import "./content-section.style.scss";
 
-function ContentSection() {
-  const { option } = useSelector((state) => state.navOptions);
+function ContentSection({page}) {
+  const { competitionOptions, clubDetailsOptions, adminOptions } = useSelector((state) => state.navOptions);
 
-  const renderComponent = (o) => {
+  const renderCompetitonComponent = (o) => {
     switch (o) {
-      case CONSTANTS.STANDINGS:
+      case CONSTANTS.COMPETITION_STANDINGS:
         return <Standings />;
 
-      case CONSTANTS.FIXTURES:
+      case CONSTANTS.COMPETITION_FIXTURES:
         return <Fixtures />;
 
-      case CONSTANTS.NEWS:
+      case CONSTANTS.COMPETITION_NEWS:
         return <News />;
 
-      case CONSTANTS.TEAMS:
+      case CONSTANTS.COMPETITION_TEAMS:
         return <Clubs />;
 
-      case CONSTANTS.STATISTICS:
+      case CONSTANTS.COMPETITION_STATISTICS:
         return <Statistics />;
-
-      case CONSTANTS.CLUB_INFO:
-        return <ClubDetails />;
 
       default:
         return <></>;
     }
   };
 
-  return <div className="content-container">{renderComponent(option)}</div>;
+  const renderClubDetailsComponent = (o) => {
+    switch (o) {
+      case CONSTANTS.CLUB_INFO:
+        return <ClubDetails />;
+
+      case CONSTANTS.CLUB_PLAYERS:
+        return null;
+
+        default:
+        return <></>;
+    }
+  };
+
+  const renderComponent = (p, o) => {
+    switch(p) {
+      case "competition":
+        return renderCompetitonComponent(o);
+
+        case "clubDetails":
+          return renderClubDetailsComponent(o);
+
+          default:
+            return null;
+    }
+  }
+
+  return <div className="content-container">
+  {renderCompetitonComponent(competitionOptions)}
+  </div>;
 }
 
 export default ContentSection;

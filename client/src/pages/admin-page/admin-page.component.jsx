@@ -1,17 +1,17 @@
 import { useSelector, connect } from "react-redux";
 import ContentAdmin from "../../components/content-admin/content-admin.component";
 import NavAdmin from "../../components/nav-admin/nav-admin.component";
-import { setOptions } from "../../redux/nav-options/nav-options.actions";
+import { setOption } from "../../redux/nav-options/nav-options.actions";
 import "./admin-page.style.scss";
 
-function AdminPage({ setOption }) {
+function AdminPage({ changeOption }) {
   const headerOptions = ["Sign in", "Sign out"];
   const navOptions = ["Competition", "Clubs", "Players", "Matches", "News"];
 
-  const { option } = useSelector((state) => state.navOptions);
+  const { adminOptions } = useSelector((state) => state.navOptions);
 
   const handleChangeNavOption = (opt) => {
-    setOption(opt);
+    changeOption('admin', opt);
   };
 
   return (
@@ -38,7 +38,7 @@ function AdminPage({ setOption }) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  setOption: (opt) => dispatch(setOptions(opt)),
+  changeOption: (property, opt) => dispatch(setOption(property, opt)),
 });
 
 export default connect(null, mapDispatchToProps)(AdminPage);

@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom";
 
 // action from redux
 import { setSelectedClub } from "../../redux/clubs/clubs.actions";
-import { setOptions } from "../../redux/nav-options/nav-options.actions";
+import { setOption } from "../../redux/nav-options/nav-options.actions";
 
 // components
 import SVG from "../svg-container/svg.component";
@@ -41,7 +41,7 @@ function Club({ club, showDetails, selectClub, setOption }) {
         // fire selectClub action
         selectClub(club);
         // fire setOption action
-        setOption(CONSTANTS.CLUB_INFO);
+        setOption('club', CONSTANTS.CLUB_INFO);
         // go the club-details-page
         history.push("/club");
       }}
@@ -61,7 +61,7 @@ function Club({ club, showDetails, selectClub, setOption }) {
 // action to fire on some event
 const mapDispatchToProps = (dispatch) => ({
   selectClub: (team) => dispatch(setSelectedClub(team)),
-  setOption: (opt) => dispatch(setOptions(opt)),
+  setOption: (property, opt) => dispatch(setOption(property, opt)),
 });
 
 export default connect(null, mapDispatchToProps)(Club);

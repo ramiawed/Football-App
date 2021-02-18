@@ -1,6 +1,22 @@
 import NavOptionsTypes from "./nav-options.types";
 
-export const setOptions = (option) => ({
-  type: NavOptionsTypes.SET_OPTION,
-  payload: option,
-});
+export const setOption = (property,option) => {
+  if (property === "competition") {
+    return ({
+      type: NavOptionsTypes.SET_COMPETITION_OPTION,
+      payload: option
+    })
+  } else if (property === "club") {
+    return ({
+      type: NavOptionsTypes.SET_CLUB_OPTION,
+      payload: option
+    })
+  } else if (property === "admin") {
+    return ({
+      type: NavOptionsTypes.SET_ADMIN_OPTION,
+      payload: option
+    })
+  }
+}
+
+
