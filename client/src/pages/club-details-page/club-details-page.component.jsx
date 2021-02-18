@@ -1,5 +1,5 @@
 import { connect, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 import ContentSection from "../../components/content-section/content-section.component";
 import Nav from "../../components/nav/nav.component";
@@ -10,11 +10,29 @@ import CONSTANTS from "../../utils/constants.util";
 import "./club-details-page.style.scss";
 
 const ClubDetailsPage = ({ changeOption }) => {
+  const history = useHistory();
   const { selectedCompetition } = useSelector((state) => state.competitions);
   const { selectedClub } = useSelector((state) => state.clubs);
   const { clubDetailsOptions } = useSelector((state) => state.navOptions);
 
-  const headerOptions = ["Sign in", "Sign out", "Admin"];
+  const goToAdminPage = () => {
+    history.push("/admin");
+  };
+
+  const headerOptions = [
+    {
+      title: "Sign in",
+      onclick: null,
+    },
+    {
+      title: "Sign out",
+      onclick: null,
+    },
+    {
+      title: "Admin",
+      onclick: goToAdminPage,
+    },
+  ];
   const navOptions = [CONSTANTS.CLUB_INFO, CONSTANTS.CLUB_PLAYERS];
 
   const handleChangeNavOption = (opt) => {

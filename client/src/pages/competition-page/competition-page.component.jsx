@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 import ContentSection from "../../components/content-section/content-section.component";
 import Nav from "../../components/nav/nav.component";
@@ -12,10 +12,30 @@ import CONSTANTS from "../../utils/constants.util";
 import "./competition-page.style.scss";
 
 function CompetitionPage({ clubsHasChange, changeOption }) {
+  const history = useHistory();
   const { selectedCompetition } = useSelector((state) => state.competitions);
   const { competitionOptions } = useSelector((state) => state.navOptions);
 
-  const headerOptions = ["Sign in", "Sign out", "Admin"];
+  const goToAdminPage = () => {
+    history.push("/admin");
+  };
+
+  // const headerOptions = ["Sign in", "Sign out", "Admin"];
+
+  const headerOptions = [
+    {
+      title: "Sign in",
+      onclick: null,
+    },
+    {
+      title: "Sign out",
+      onclick: null,
+    },
+    {
+      title: "Admin",
+      onclick: goToAdminPage,
+    },
+  ];
 
   const navOptions = [
     CONSTANTS.COMPETITION_STANDINGS,

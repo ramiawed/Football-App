@@ -1,5 +1,4 @@
-import { useReducer } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import ContentSection from "../../components/content-section/content-section.component";
 import Nav from "../../components/nav/nav.component";
 import { setOption } from "../../redux/nav-options/nav-options.actions";
@@ -7,7 +6,13 @@ import CONSTANTS from "../../utils/constants.util";
 import "./admin-page.style.scss";
 
 function AdminPage({ changeOption }) {
-  const headerOptions = ["Sign in", "Sign out"];
+  const { adminOptions } = useSelector((state) => state.navOptions);
+
+  const headerOptions = [
+    { title: "Sign in", onclick: null },
+    { title: "Sign out", onclick: null },
+  ];
+
   const navOptions = [
     CONSTANTS.ADMIN_COMPETITIONS,
     CONSTANTS.ADMIN_CLUBS,
@@ -15,8 +20,6 @@ function AdminPage({ changeOption }) {
     CONSTANTS.ADMIN_MATCHES,
     CONSTANTS.ADMIN_NEWS,
   ];
-
-  const { adminOptions } = useReducer((state) => state.navOptions);
 
   const handleChangeNavOption = (opt) => {
     changeOption("admin", opt);

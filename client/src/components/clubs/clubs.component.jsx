@@ -24,7 +24,7 @@ import {
 import "./clubs.style.scss";
 
 function Clubs({ getClubs, resetSelectedClub }) {
-  // get the clubs, isLoading, hasChnaged from club-reducer
+  // get the clubs, isLoading, hasChanged from club-reducer
   const { clubs, isLoading, hasChanged } = useSelector((state) => state.clubs);
 
   // get the selectedCompetition from competition-reducer

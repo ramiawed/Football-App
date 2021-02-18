@@ -1,11 +1,11 @@
-// this component represent a full functionality of NavBar.
+// this component represents a full functionality of NavBar.
 // contains:
-// - header: which contains the (back button, title, some options, show menu option)
-// - selected option: (this display just in the small screen)
+// - header: which contains the (back button, title, some options with it functionality, show menu option)
+// - selected option: (this display just in the small screen, to display which option was selected)
 // - options: a set of available options (display in column in small screen, in row in medium screen)
 // this component takes an optional parameters
 // bgColor, foreColor, hoverColor, fontFamily
-// navOptions, headerOption
+// navOptions, headerOption, initialOption
 
 // library
 import { useState } from "react";
@@ -146,8 +146,9 @@ function Nav({
                 hoverColor={hoverColor}
                 key={index}
                 className="navbar-header-option"
+                onClick={() => option.onclick && option.onclick()}
               >
-                {option}
+                {option.title}
               </NavBarHeaderOption>
             ))
           : null}
