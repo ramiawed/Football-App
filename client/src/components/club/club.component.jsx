@@ -41,7 +41,7 @@ function Club({ club, showDetails, selectClub, setOption }) {
         // fire selectClub action
         selectClub(club);
         // fire setOption action
-        setOption('club', CONSTANTS.CLUB_INFO);
+        setOption("club", CONSTANTS.CLUB_INFO);
         // go the club-details-page
         history.push("/club");
       }}

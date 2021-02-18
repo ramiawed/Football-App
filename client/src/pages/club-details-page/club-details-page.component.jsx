@@ -1,17 +1,25 @@
-import { useSelector } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import ContentSection from "../../components/content-section/content-section.component";
 import Nav from "../../components/nav/nav.component";
 
+import { setOption } from "../../redux/nav-options/nav-options.actions";
+
 import CONSTANTS from "../../utils/constants.util";
 import "./club-details-page.style.scss";
 
-const ClubDetailsPage = () => {
+const ClubDetailsPage = ({ changeOption }) => {
   const { selectedCompetition } = useSelector((state) => state.competitions);
   const { selectedClub } = useSelector((state) => state.clubs);
+  const { clubDetailsOptions } = useSelector((state) => state.navOptions);
 
-  const options = [CONSTANTS.CLUB_INFO, CONSTANTS.CLUB_PLAYERS];
+  const headerOptions = ["Sign in", "Sign out", "Admin"];
+  const navOptions = [CONSTANTS.CLUB_INFO, CONSTANTS.CLUB_PLAYERS];
+
+  const handleChangeNavOption = (opt) => {
+    changeOption("club", opt);
+  };
 
   return (
     <>
@@ -28,12 +36,29 @@ const ClubDetailsPage = () => {
             }`,
           }}
         >
-          <Nav component={selectedClub} options={options} />
-          <ContentSection />
+          <div className="sticky">
+            <Nav
+              initialOption={clubDetailsOptions}
+              title={selectedClub.name}
+              headerOptions={headerOptions}
+              navOptions={navOptions}
+              bgColor={selectedClub.color || selectedCompetition.color}
+              foreColor="rgb(255, 255, 255)"
+              hoverColor="rgb(196, 209, 89)"
+              fontFamily="Sriracha, cursive"
+              onChangeNavOption={handleChangeNavOption}
+            />
+          </div>
+
+          <ContentSection page="clubDetails" />
         </div>
       )}
     </>
   );
 };
 
-export default ClubDetailsPage;
+const mapDispatchToProps = (dispatch) => ({
+  changeOption: (property, opt) => dispatch(setOption(property, opt)),
+});
+
+export default connect(null, mapDispatchToProps)(ClubDetailsPage);

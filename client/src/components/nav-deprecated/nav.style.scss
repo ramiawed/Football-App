@@ -1,0 +1,146 @@
+@import "../../general.style.scss";
+
+.nav-container {
+  @include main-font();
+
+  color: #fff;
+  width: 100%;
+  z-index: 10;
+
+  // positioning
+  position: sticky;
+  top: 0;
+
+  // display property
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  // show just in mobile view
+  & .selected-option {
+    // display property
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: rgb(10, 182, 212);
+    font-weight: 600;
+
+    & p {
+      padding: 8px 16px;
+      border-bottom: 3px solid rgb(10, 182, 212);
+    }
+
+    // hide the selected-option in large screen
+    @media screen and (min-width: $small) {
+      display: none;
+    }
+  }
+
+  & .nav-header {
+    display: flex;
+    flex-direction: row;
+
+    & .back-btn {
+      // display properties
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      padding-left: 8px;
+      cursor: pointer;
+
+      &:hover {
+        color: rgb(10, 182, 212);
+      }
+    }
+
+    & .header-options {
+      padding: 4px 20px;
+      margin: auto;
+      display: flex;
+      flex-direction: row;
+
+      & p {
+        padding: 0 8px;
+        display: flex;
+        justify-self: center;
+        align-items: center;
+        margin: 0;
+        cursor: pointer;
+
+        &:hover {
+          color: rgb(10, 182, 212);
+        }
+      }
+
+      & .show-nav-option {
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0 8px;
+
+        // display property
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        // transform
+        transition: all 0.5s ease-in-out;
+
+        &:hover {
+          opacity: 0.8;
+        }
+
+        @media screen and (min-width: $small) {
+          display: none;
+        }
+      }
+    }
+
+    & h2 {
+      flex: 1;
+      margin: 0;
+      padding: 4px 20px;
+    }
+  }
+
+  // container that contains the tabs
+  // it display the tabs in column in mobile view
+  // id display the tabs in  row in laptop and large screen
+  & .nav-tabs {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 2s ease-in-out;
+
+    & .nav-tabs-tab {
+      display: flex;
+      padding: 10px 16px;
+      cursor: pointer;
+      transition: color 0.3s;
+
+      &.selected {
+        border-bottom: 3px solid rgb(10, 182, 212);
+        color: rgb(10, 182, 212);
+        font-weight: 600;
+      }
+
+      &:hover {
+        font-weight: 600;
+        color: rgb(10, 182, 212);
+      }
+    }
+
+    @media screen and (min-width: $small) {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  & .nav-taps-show {
+    display: flex;
+    overflow: hidden;
+  }
+}

@@ -11,6 +11,8 @@ import News from "../news/news.component";
 import Clubs from "../clubs/clubs.component";
 import Statistics from "../statistics/statistics.component";
 import ClubDetails from "../club-details/club-details.component";
+import ClubsAdmin from "../clubs-admin/clubs-admin.component";
+import CompetitionsAdmin from "../competitions-admin/competitions-admin.component";
 
 // utils
 import CONSTANTS from "../../utils/constants.util";
@@ -18,11 +20,13 @@ import CONSTANTS from "../../utils/constants.util";
 // style
 import "./content-section.style.scss";
 
-function ContentSection({page}) {
-  const { competitionOptions, clubDetailsOptions, adminOptions } = useSelector((state) => state.navOptions);
+function ContentSection({ page }) {
+  const { competitionOptions, clubDetailsOptions, adminOptions } = useSelector(
+    (state) => state.navOptions
+  );
 
-  const renderCompetitonComponent = (o) => {
-    switch (o) {
+  const renderCompetitionComponent = () => {
+    switch (competitionOptions) {
       case CONSTANTS.COMPETITION_STANDINGS:
         return <Standings />;
 
@@ -43,35 +47,49 @@ function ContentSection({page}) {
     }
   };
 
-  const renderClubDetailsComponent = (o) => {
-    switch (o) {
+  const renderClubDetailsComponent = () => {
+    switch (clubDetailsOptions) {
       case CONSTANTS.CLUB_INFO:
         return <ClubDetails />;
 
       case CONSTANTS.CLUB_PLAYERS:
         return null;
 
-        default:
+      default:
         return <></>;
     }
   };
 
-  const renderComponent = (p, o) => {
-    switch(p) {
-      case "competition":
-        return renderCompetitonComponent(o);
+  const renderAdminComponent = () => {
+    switch (adminOptions) {
+      case CONSTANTS.ADMIN_CLUBS:
+        return <ClubsAdmin />;
 
-        case "clubDetails":
-          return renderClubDetailsComponent(o);
+      case CONSTANTS.ADMIN_COMPETITIONS:
+        return <CompetitionsAdmin />;
 
-          default:
-            return null;
+      default:
+        return <></>;
     }
-  }
+  };
 
-  return <div className="content-container">
-  {renderCompetitonComponent(competitionOptions)}
-  </div>;
+  const renderComponent = (p) => {
+    switch (p) {
+      case "competition":
+        return renderCompetitionComponent();
+
+      case "clubDetails":
+        return renderClubDetailsComponent();
+
+      case "admin":
+        return renderAdminComponent();
+
+      default:
+        return null;
+    }
+  };
+
+  return <div className="content-container">{renderComponent(page)}</div>;
 }
 
 export default ContentSection;

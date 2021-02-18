@@ -1,119 +1,196 @@
+// this component represent a full functionality of NavBar.
+// contains:
+// - header: which contains the (back button, title, some options, show menu option)
+// - selected option: (this display just in the small screen)
+// - options: a set of available options (display in column in small screen, in row in medium screen)
+// this component takes an optional parameters
+// bgColor, foreColor, hoverColor, fontFamily
+// navOptions, headerOption
+
 // library
 import { useState } from "react";
-import { useHistory, useRouteMatch } from "react-router-dom";
-import { connect, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 
 // icons
 import { BiMenu } from "react-icons/bi";
 import { BsArrowLeftShort } from "react-icons/bs";
 
-// actions
-import { setOption } from "../../redux/nav-options/nav-options.actions";
-
-// utils
-import CONSTANTS from "../../utils/constants.util";
-
 // style
-import "./nav.style.scss";
+// import "./nav-admin.style.scss";
 
-function Nav({ component, changeOption, options }) {
-  let history = useHistory();
-  let match = useRouteMatch();
+const HoverDiv = styled.div`
+  &:hover {
+    color: ${(props) => props.hoverColor || "black"};
+  }
+`;
 
-  // GET THE SELECTED OPTION FROM store
-  const { option } = useSelector((state) => state.navOptions);
+const NavBarContainer = styled.div`
+  font-family: ${(props) => props.fontFamily};
+  position: sticky;
+  width: 100%;
+  background-color: ${(props) => props.bgColor || "black"};
+  color: ${(props) => props.foreColor || "white"};
+  z-index: 10;
 
-  // USES TO SET THE BACKGROUND FOR THE NAV
-  // IF THE COMPONENT IS CLUB, AND THE CLUB DON'T HAVE A COLOR PROPERTY
-  const { selectedCompetition } = useSelector((state) => state.competitions);
+  display: flex;
+  flex-direction: column;
 
-  // USES IN SMALL SCREEN TO SHOW SELECTED OPTION
-  const [selectedOption, setSelectedOption] = useState(option);
+  @media only screen and (min-width: 481px) {
+    padding: 0 4px;
+  }
+`;
 
-  // USES IN SMALL SCREEN TO SHOW OR HIDE THE OPTIONS IN THE NAV
+const NavBarHeader = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const NavBarTitle = styled.div`
+  flex: 1;
+`;
+
+const NavBarHeaderOption = styled(HoverDiv)`
+  padding: 0 4px;
+  cursor: pointer;
+`;
+
+const NavBarSelectedOption = styled.div`
+  text-align: center;
+  padding: 4px 6px;
+  color: ${(props) => props.foreColor || "white"};
+
+  @media only screen and (min-width: 481px) {
+    display: none;
+  }
+`;
+
+const BsArrowLeftShortStyled = styled(BsArrowLeftShort)`
+  font-size: 2rem;
+  cursor: pointer;
+  &:hover {
+    color: ${(props) => props.hoverColor || "black"};
+  }
+`;
+
+const BiMenuStyled = styled(BiMenu)`
+  font-size: 2rem;
+  cursor: pointer;
+  &:hover {
+    color: ${(props) => props.hoverColor || "black"};
+  }
+
+  @media only screen and (min-width: 481px) {
+    display: none;
+  }
+`;
+
+const NavBarOption = styled.div`
+  margin: 4px;
+  text-align: center;
+  padding: 4px 6px;
+  cursor: pointer;
+  color: ${(props) => (props.selected ? props.hoverColor : "")};
+  border-bottom: ${(props) =>
+    props.selected ? `3px solid ${props.hoverColor}` : ""};
+  &:hover {
+    color: ${(props) => props.hoverColor || "black"};
+  }
+`;
+
+const NavbarOptions = styled.div`
+  display: ${(props) => (props.showOptions ? "flex" : "none")};
+  flex-direction: column;
+  align-items: center;
+
+  @media only screen and (min-width: 481px) {
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+function Nav({
+  initialOption,
+  headerOptions,
+  navOptions,
+  title,
+  bgColor,
+  foreColor,
+  hoverColor,
+  fontFamily,
+  onChangeNavOption,
+}) {
+  const history = useHistory();
   const [showOptions, setShowOptions] = useState(false);
-
-  // SELECT ANOTHER OPTION
-  // IN SMALL SCREEN CLOSE THE MENU
-  // CHANGE THE STATE OF SELECTEDOPTION
-  // FIRE AN ACTION TO CHANGE SELECTED OPTION IN store
-  const handleChangeOption = (opt) => {
-    setShowOptions(false);
-    setSelectedOption(opt);
-    changeOption(opt);
-  };
-
-  // HANDLE PRESS BACK BUTTON
-  // IF YOU ARE IN THE CLUB PAGE, SET THE SELECTED OPTION IN store TO CONSTANTS.TEAMS
-  // IF YOU ARE IN THE COMPETITION PAGE, SET THE SELECTED OPTION IN store TO CONSTANTS.STANDINGS
-  const handleBackBtn = () => {
-    if (match.path === "/club") {
-      // IN CLUB PAGE
-      changeOption(CONSTANTS.TEAMS);
-    } else if (match.path === "/competition") {
-      // IN COMPETITION PAGE
-      changeOption(CONSTANTS.STANDINGS);
-    }
-
-    // GO BACK ONE STEP
-    history.goBack();
-  };
+  const [selectedOption, setSelectedOption] = useState(initialOption || "");
 
   return (
-    <div
-      className="nav-container"
-      style={{
-        backgroundColor: `${
-          component.color ? component.color : selectedCompetition.color
-        }`,
-      }}
+    <NavBarContainer
+      bgColor={bgColor}
+      foreColor={foreColor}
+      fontFamily={fontFamily}
+      className="navbar-container"
     >
-      <div className="nav-header">
-        <div className="back-btn" onClick={handleBackBtn}>
-          <BsArrowLeftShort />
-        </div>
-        <h2>{component.shortName ? component.shortName : component.name}</h2>
-        <div className="header-options">
-          <p>Sign in</p>
-          <p onClick={() => history.push("/admin")}>Admin</p>
-          <p
-            className="show-nav-option"
-            onClick={() => {
-              setShowOptions(!showOptions);
-            }}
-          >
-            <BiMenu />
-          </p>
-        </div>
-      </div>
+      <NavBarHeader className="navbar-header">
+        <BsArrowLeftShortStyled
+          hoverColor={hoverColor}
+          className="navbar-icon"
+          onClick={() => history.goBack()}
+        />
+        <NavBarTitle className="navbar-title">{title}</NavBarTitle>
+        {headerOptions
+          ? headerOptions.map((option, index) => (
+              <NavBarHeaderOption
+                hoverColor={hoverColor}
+                key={index}
+                className="navbar-header-option"
+              >
+                {option}
+              </NavBarHeaderOption>
+            ))
+          : null}
+        <BiMenuStyled
+          hoverColor={hoverColor}
+          className="navbar-icon menu-icon"
+          onClick={() => setShowOptions(!showOptions)}
+        />
+      </NavBarHeader>
 
-      {/* show or hide the selected option based on the screen width */}
-      {!showOptions && (
-        <div className="selected-option">
-          <p>{selectedOption}</p>
-        </div>
-      )}
+      {!showOptions ? (
+        <NavBarSelectedOption
+          foreColor={hoverColor}
+          className="navbar-selected-option"
+        >
+          {selectedOption}
+        </NavBarSelectedOption>
+      ) : null}
 
-      <div className={`${showOptions ? "nav-taps-show" : ""} nav-tabs`}>
-        {options.map((opt, index) => (
-          <div
-            key={index}
-            className={`${option === opt ? "selected" : ""} nav-tabs-tab`}
-            onClick={() => {
-              handleChangeOption(opt);
-            }}
-          >
-            {opt}
-          </div>
-        ))}
-      </div>
-    </div>
+      <NavbarOptions
+        showOptions={showOptions}
+        className={`${showOptions ? "navbar-options-show" : ""} navbar-options`}
+      >
+        {navOptions
+          ? navOptions.map((option, index) => (
+              <NavBarOption
+                hoverColor={hoverColor}
+                key={index}
+                className="navbar-option"
+                selected={option === selectedOption}
+                onClick={() => {
+                  setSelectedOption(option);
+                  setShowOptions(false);
+                  onChangeNavOption(option);
+                }}
+              >
+                {option}
+              </NavBarOption>
+            ))
+          : null}
+      </NavbarOptions>
+    </NavBarContainer>
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  // FIRE AN ACTION TO CHANGE THE OPTION TO SELECTED ONE
-  changeOption: (proprety, opt) => dispatch(setOption(proprety,opt)),
-});
-
-export default connect(null, mapDispatchToProps)(Nav);
+export default Nav;

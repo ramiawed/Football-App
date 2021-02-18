@@ -1,17 +1,25 @@
-import { useSelector, connect } from "react-redux";
-import ContentAdmin from "../../components/content-admin/content-admin.component";
-import NavAdmin from "../../components/nav-admin/nav-admin.component";
+import { useReducer } from "react";
+import { connect } from "react-redux";
+import ContentSection from "../../components/content-section/content-section.component";
+import Nav from "../../components/nav/nav.component";
 import { setOption } from "../../redux/nav-options/nav-options.actions";
+import CONSTANTS from "../../utils/constants.util";
 import "./admin-page.style.scss";
 
 function AdminPage({ changeOption }) {
   const headerOptions = ["Sign in", "Sign out"];
-  const navOptions = ["Competition", "Clubs", "Players", "Matches", "News"];
+  const navOptions = [
+    CONSTANTS.ADMIN_COMPETITIONS,
+    CONSTANTS.ADMIN_CLUBS,
+    CONSTANTS.ADMIN_PLAYERS,
+    CONSTANTS.ADMIN_MATCHES,
+    CONSTANTS.ADMIN_NEWS,
+  ];
 
-  const { adminOptions } = useSelector((state) => state.navOptions);
+  const { adminOptions } = useReducer((state) => state.navOptions);
 
   const handleChangeNavOption = (opt) => {
-    changeOption('admin', opt);
+    changeOption("admin", opt);
   };
 
   return (
@@ -21,18 +29,21 @@ function AdminPage({ changeOption }) {
         background: "rgb(124, 109, 239)",
       }}
     >
-      <NavAdmin
-        title="Admin"
-        headerOptions={headerOptions}
-        navOptions={navOptions}
-        bgColor="rgb(124, 109, 239)"
-        foreColor="rgb(255, 255, 255)"
-        hoverColor="rgb(196, 209, 89)"
-        fontFamily="Sriracha, cursive"
-        onChangeNavOption={handleChangeNavOption}
-      />
+      <div className="sticky">
+        <Nav
+          initialOption={adminOptions}
+          title="Admin"
+          headerOptions={headerOptions}
+          navOptions={navOptions}
+          bgColor="rgb(124, 109, 239)"
+          foreColor="rgb(255, 255, 255)"
+          hoverColor="rgb(196, 209, 89)"
+          fontFamily="Sriracha, cursive"
+          onChangeNavOption={handleChangeNavOption}
+        />
+      </div>
 
-      <ContentAdmin />
+      <ContentSection page="admin" />
     </div>
   );
 }

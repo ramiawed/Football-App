@@ -3,7 +3,7 @@ import { connect, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import ContentSection from "../../components/content-section/content-section.component";
-import NavAdmin from '../../components/nav-admin/nav-admin.component';
+import Nav from "../../components/nav/nav.component";
 
 import { clubsHasChanged } from "../../redux/clubs/clubs.actions";
 import { setOption } from "../../redux/nav-options/nav-options.actions";
@@ -13,6 +13,7 @@ import "./competition-page.style.scss";
 
 function CompetitionPage({ clubsHasChange, changeOption }) {
   const { selectedCompetition } = useSelector((state) => state.competitions);
+  const { competitionOptions } = useSelector((state) => state.navOptions);
 
   const headerOptions = ["Sign in", "Sign out", "Admin"];
 
@@ -25,7 +26,7 @@ function CompetitionPage({ clubsHasChange, changeOption }) {
   ];
 
   const handleChangeNavOption = (opt) => {
-    changeOption('competition', opt);
+    changeOption("competition", opt);
   };
 
   useEffect(() => {
@@ -45,20 +46,21 @@ function CompetitionPage({ clubsHasChange, changeOption }) {
             backgroundColor: `${selectedCompetition.color}`,
           }}
         >
+          <div className="sticky">
+            <Nav
+              initialOption={competitionOptions}
+              title={selectedCompetition.name}
+              headerOptions={headerOptions}
+              navOptions={navOptions}
+              bgColor={selectedCompetition.color}
+              foreColor="rgb(255, 255, 255)"
+              hoverColor="rgb(196, 209, 89)"
+              fontFamily="Sriracha, cursive"
+              onChangeNavOption={handleChangeNavOption}
+            />
+          </div>
 
-          <NavAdmin
-          title={selectedCompetition.name}
-          headerOptions={headerOptions}
-          navOptions={navOptions}
-          bgColor={selectedCompetition.color}
-          foreColor="rgb(255, 255, 255)"
-          hoverColor="rgb(196, 209, 89)"
-          fontFamily="Sriracha, cursive"
-          onChangeNavOption={handleChangeNavOption}
-          />
-
-          
-          <ContentSection page='competition' />
+          <ContentSection page="competition" />
         </div>
       )}
     </>
