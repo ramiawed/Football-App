@@ -54,6 +54,7 @@ function Club({ club, showDetails, selectClub, setOption }) {
       />
 
       <div className="club-name">{club.name}</div>
+      <div>{club.founded}</div>
     </div>
   );
 }

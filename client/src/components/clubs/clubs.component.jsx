@@ -22,8 +22,14 @@ import {
 
 // style
 import "./clubs.style.scss";
+import OrderSearch from "../order-search/order-search.component";
 
 function Clubs({ getClubs, resetSelectedClub }) {
+  // state to watch the value in the search input field
+  const [searchClub, setSearchClub] = useState("");
+
+  const [orderClub, setOrderClub] = useState("name");
+
   // get the clubs, isLoading, hasChanged from club-reducer
   const { clubs, isLoading, hasChanged } = useSelector((state) => state.clubs);
 
@@ -46,18 +52,52 @@ function Clubs({ getClubs, resetSelectedClub }) {
     if (hasChanged) getClubs(selectedCompetition._id);
   }, [getClubs, selectedCompetition._id, hasChanged]);
 
+  const handleChangeSearchValue = (val) => {
+    setSearchClub(val);
+  };
+
+  const handleChangeOrder = (val) => {
+    setOrderClub(val);
+  };
+
+  const compareClubs = (a, b) => {
+    if (orderClub === "name") {
+      return a.name.localeCompare(b.name);
+    } else if (orderClub === "name desc") {
+      return b.name.localeCompare(a.name);
+    } else if (orderClub === "founded") {
+      return a.founded - b.founded;
+    } else if (orderClub === "founded desc") {
+      return b.founded - a.founded;
+    }
+  };
+
   return (
-    <div className="clubs-container">
-      {/* {showTeamDetailsModal ? (
+    <div>
+      <OrderSearch
+        className="order-search"
+        bgColor={selectedCompetition.color}
+        foreColor="rgb(255, 255, 255)"
+        searchChange={handleChangeSearchValue}
+        orderChange={handleChangeOrder}
+      />
+      <div className="clubs-container">
+        {/* {showTeamDetailsModal ? (
         <div className="modal-background" onClick={closeModal}></div>
       ) : null} */}
-      {isLoading || clubs.length === 0 ? (
-        <div>loading</div>
-      ) : (
-        clubs.map((club) => <Club key={club._id} club={club} />)
-      )}
+        {isLoading || clubs.length === 0 ? (
+          <div>loading</div>
+        ) : (
+          clubs
+            .sort(compareClubs)
+            .filter((club) =>
+              club.name.toLowerCase().includes(searchClub.toLowerCase().trim())
+            )
+            .map((club) => <Club key={club._id} club={club} />)
+        )}
 
-      {/* <Modal show={showTeamDetailsModal} close={closeModal} /> */}
+        {/* <Modal show={showTeamDetailsModal} close={closeModal} /> */}
+      </div>
     </div>
   );
 }

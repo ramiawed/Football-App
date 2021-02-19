@@ -13,6 +13,7 @@ import "./competition-page.style.scss";
 
 function CompetitionPage({ clubsHasChange, changeOption }) {
   const history = useHistory();
+
   const { selectedCompetition } = useSelector((state) => state.competitions);
   const { competitionOptions } = useSelector((state) => state.navOptions);
 
@@ -49,11 +50,11 @@ function CompetitionPage({ clubsHasChange, changeOption }) {
     changeOption("competition", opt);
   };
 
-  useEffect(() => {
-    return () => {
-      clubsHasChange();
-    };
-  }, [clubsHasChange]);
+  // useEffect(() => {
+  //   return () => {
+  //     clubsHasChange();
+  //   };
+  // }, [clubsHasChange]);
 
   return (
     <>

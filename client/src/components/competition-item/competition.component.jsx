@@ -6,13 +6,13 @@
 
 // library
 import { useHistory, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 // components
 import SVG from "../svg-container/svg.component";
 
 // actions
-import { setSelectedCompetition } from "../../redux/competitions/competitions.action";
+import { setSelectedCompetitionAsync } from "../../redux/competitions/competitions.action";
 
 // style
 import "./competition.style.scss";
@@ -20,10 +20,12 @@ import "./competition.style.scss";
 function CompetitionItem({ competition, setSelectedCompetition }) {
   const history = useHistory();
 
+  const { selectedCompetition } = useSelector((state) => state.competitions);
+
   // when click on competition-item
   const goToMainPage = () => {
     // set the selectedCompetition in the competition-reducer to the selected one
-    setSelectedCompetition(competition);
+    setSelectedCompetition(selectedCompetition, competition);
 
     // go the the competition page
     history.push("/competition");
@@ -55,7 +57,7 @@ function CompetitionItem({ competition, setSelectedCompetition }) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  setSelectedCompetition: (l) => dispatch(setSelectedCompetition(l)),
+  setSelectedCompetition: (p, l) => dispatch(setSelectedCompetitionAsync(p, l)),
 });
 
 export default withRouter(connect(null, mapDispatchToProps)(CompetitionItem));
