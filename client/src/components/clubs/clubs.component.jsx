@@ -23,6 +23,7 @@ import {
 // style
 import "./clubs.style.scss";
 import OrderSearch from "../order-search/order-search.component";
+import ClubLoader from "../club-loader/club-loader.component";
 
 function Clubs({ getClubs, resetSelectedClub }) {
   // state to watch the value in the search input field
@@ -35,6 +36,8 @@ function Clubs({ getClubs, resetSelectedClub }) {
 
   // get the selectedCompetition from competition-reducer
   const { selectedCompetition } = useSelector((state) => state.competitions);
+
+  const emptyArray = [0, 1, 2, 3, 4, 5];
 
   // boolean state to show or hide the club model
   // const [showTeamDetailsModal, setShowTeamDetailsModal] = useState(false);
@@ -85,16 +88,18 @@ function Clubs({ getClubs, resetSelectedClub }) {
         {/* {showTeamDetailsModal ? (
         <div className="modal-background" onClick={closeModal}></div>
       ) : null} */}
-        {isLoading || clubs.length === 0 ? (
-          <div>loading</div>
-        ) : (
-          clubs
-            .sort(compareClubs)
-            .filter((club) =>
-              club.name.toLowerCase().includes(searchClub.toLowerCase().trim())
-            )
-            .map((club) => <Club key={club._id} club={club} />)
-        )}
+        {isLoading || clubs.length === 0
+          ? emptyArray.map((el) => (
+              <ClubLoader bgColor={selectedCompetition.color} />
+            ))
+          : clubs
+              .sort(compareClubs)
+              .filter((club) =>
+                club.name
+                  .toLowerCase()
+                  .includes(searchClub.toLowerCase().trim())
+              )
+              .map((club) => <Club key={club._id} club={club} />)}
 
         {/* <Modal show={showTeamDetailsModal} close={closeModal} /> */}
       </div>

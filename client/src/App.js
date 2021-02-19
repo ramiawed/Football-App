@@ -4,11 +4,12 @@ import EntryPage from "./pages/entry-page/entry-page.component";
 import CompetitionPage from "./pages/competition-page/competition-page.component.jsx";
 import AdminPage from "./pages/admin-page/admin-page.component";
 import OrderSearch from "./components/order-search/order-search.component";
+import ClubLoader from "./components/club-loader/club-loader.component.jsx";
 
 function App() {
   return (
     <div className="App">
-      {/* <OrderSearch bgColor="rgb(123, 8, 201)" foreColor="rgb(255, 255, 255)" /> */}
+      {/* <ClubLoader /> */}
       <Switch>
         <Route path="/" exact component={EntryPage} />
         <Route path="/competition" exact component={CompetitionPage} />
