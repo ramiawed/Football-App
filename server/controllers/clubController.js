@@ -131,6 +131,31 @@ export const updateClub = catchAsync(async (req, res, next) => {
   });
 });
 
+// UPDATE AN EXISTING CLUB
+export const inactiveClub = catchAsync(async (req, res, next) => {
+  // GET THE CLUB ID FROM REQUEST PARAMETERS
+  const clubId = req.params.clubId;
+
+  //CHECK IF THE CLUB ID NOT NULL
+  if (!clubId) {
+    return next(new Error("Please enter a club id"));
+  }
+
+  // FIND THE CLUB BY ID AND IF IT ANY, UPDATE IT
+  const club = await Club.findByIdAndUpdate(clubId, { active: false });
+
+  // IF THERE IS NO CLUB BY THAT ID
+  // THROW AN ERROR
+  if (!club) {
+    return next(new AppError("No club found", 404));
+  }
+
+  // IF UPDATE SUCCESS,
+  res.status(200).json({
+    status: "success",
+  });
+});
+
 // DELETE A CLUB SPECIFIED BY ID
 export const deleteClub = catchAsync(async (req, res, next) => {
   // GET THE CLUB ID FROM REQUEST PARAMETERS
@@ -142,7 +167,7 @@ export const deleteClub = catchAsync(async (req, res, next) => {
   }
 
   // FIND THE CLUB BY ID AND IF IT ANY, DELETE IT
-  const club = await Club.findByIdAndDelete(clubId);
+  const club = await Club.findByIdAndUpdate(clubId, { active: false });
 
   // IF THERE IS NO CLUB BY THAT ID
   // THROW AN ERROR

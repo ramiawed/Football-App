@@ -1,25 +1,101 @@
 @import "../../general.style.scss";
 
 .club-details {
+  margin: auto;
   align-items: center;
-  padding: 12px;
+  padding: 6px;
+  position: relative;
 
   // display properties
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 
+  &:hover .club-details-action {
+    display: block;
+  }
+
+  & .club-details-action {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: none;
+  }
+
+  & .loading {
+    @include main-font();
+    width: 200px;
+    height: 150px;
+    color: white;
+    font-size: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    // display properties
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+
+    animation-name: showResultAnimation;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+
+    @keyframes showResultAnimation {
+      0% {
+        opacity: 0.5;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+
+  & .bottom-action-bar {
+    width: 100%;
+    animation-name: moveBottomActionBar;
+    animation-duration: 0.2s;
+    animation-fill-mode: backwards;
+
+    @keyframes moveBottomActionBar {
+      0% {
+        transform: translateX(150%);
+      }
+
+      90% {
+        transform: translateX(-5%);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
+    }
+  }
+
   & .club-details-header {
+    @include main-font();
     width: 95%;
     text-align: left;
-    @include main-font();
     padding-left: 60%;
     margin-bottom: 10px;
 
     // animation properties
-    animation-name: animateheader;
+    animation-name: animate-header;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
+
+    @keyframes animate-header {
+      0% {
+        padding-left: 60%;
+      }
+
+      100% {
+        padding-left: 12px;
+      }
+    }
 
     & h2 {
       margin: 0;
@@ -33,33 +109,43 @@
         font-size: 1.4rem;
       }
     }
+  }
 
-    @keyframes animateheader {
-      0% {
-        padding-left: 60%;
-      }
+  & .details-content-section {
+    width: 100%;
+    padding: 5px;
 
-      100% {
-        padding-left: 12px;
-      }
+    // display properties
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+
+    @media only screen and (min-width: $medium) {
+      flex-direction: row;
     }
   }
 
   & .club-details-logo {
+    width: 90%;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 3px 3px 8px #444;
+    margin: auto;
+
+    // display properties
+    min-height: 225px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 98%;
 
     @media only screen and (min-width: $medium) {
-      width: 40%;
+      flex: 1;
     }
   }
 
   & .club-details-info {
-    padding-top: 10px;
+    padding: 0px 12px;
     padding-bottom: 10px;
-    width: 98%;
     font-size: 12px;
 
     // display properties
@@ -67,20 +153,22 @@
     flex-direction: column;
 
     @media only screen and (min-width: $medium) {
-      width: 58%;
+      margin-left: 10px;
+      flex: 2;
     }
 
     & .info {
+      margin-top: 5px;
       width: 100%;
-      padding-bottom: 10px;
 
       // display properties
       display: flex;
-      flex-direction: row;
+      justify-content: center;
+      align-items: center;
 
-      & .info-left {
-        flex: 1;
-        padding-left: 10px;
+      & .info-title {
+        @include main-font();
+        width: 75px;
 
         @media only screen and (min-width: $small) {
           font-size: 0.8rem;
@@ -88,12 +176,34 @@
       }
 
       & .info-right {
-        flex: 1;
         @include main-font();
+        flex: 2;
 
         @media only screen and (min-width: $small) {
-          flex: 2;
           font-size: 1.1rem;
+        }
+
+        & label {
+          background: #fafafa;
+          display: inline-block;
+        }
+
+        & input,
+        & label {
+          @include main-font();
+          width: 100%;
+          height: 100%;
+          font-size: 0.8rem;
+          padding-left: 12px;
+          border: 1px solid #ccc;
+          border-radius: 15px;
+          box-shadow: 2px 2px 4px #999;
+
+          &:focus {
+            outline: none;
+            border: 1px solid rgb(106, 102, 102);
+            border-radius: 15px;
+          }
         }
       }
     }

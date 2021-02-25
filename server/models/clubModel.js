@@ -56,6 +56,10 @@ var clubSchema = new Schema(
       type: String,
       trim: true,
     },
+    active: {
+      type: Boolean,
+      default: true,
+    },
     seasons: [
       {
         type: Schema.Types.ObjectId,
@@ -90,6 +94,12 @@ clubSchema.pre("save", function (next) {
       this.tla = shortTla.toUpperCase();
     }
   }
+  next();
+});
+
+clubSchema.pre(/^find/, function (next) {
+  this.find({ active: { $eq: true } });
+
   next();
 });
 

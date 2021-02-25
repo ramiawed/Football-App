@@ -1,6 +1,7 @@
 import express from "express";
 import {
   addClub,
+  inactiveClub,
   deleteClub,
   getAllClubs,
   getClubById,
@@ -18,5 +19,7 @@ clubRouter
   .get(getClubById)
   .patch(updateClub)
   .delete(deleteClub);
+
+clubRouter.get("/delete/:clubId", inactiveClub);
 
 export default clubRouter;

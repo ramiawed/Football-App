@@ -1,15 +1,28 @@
-import "./order-search.style.scss";
+// this component display the order options and search input.
+// Props:
+// -	orderOptions: (Array [{value, label}]): array of the options that should provide to the Select Component.
+// -	bgColor: (String) the background color.
+// -	foreColor: (String) the color of the text.
+// -	searchPlaceholder: (String) placeholder for search input field.
+// -	searchChange: (handler) handle to execute the text in the search input change.
+// -	orderChange: (handler) handler to execute when change the selected option in the Select Component
+
+// 3-party component
 import Select from "react-select";
 import { BiSearchAlt2 } from "react-icons/bi";
 
-function OrderSearch({ bgColor, foreColor, searchChange, orderChange }) {
-  const orderOptions = [
-    { value: "name", label: "Name" },
-    { value: "name desc", label: "Name Desc" },
-    { value: "founded", label: "Founded" },
-    { value: "founded desc", label: "Founded Desc" },
-  ];
+// style
+import "./order-search.style.scss";
 
+function OrderSearch({
+  bgColor,
+  foreColor,
+  orderOptions,
+  searchPlaceholder,
+  searchChange,
+  orderChange,
+}) {
+  // custom style for the Select Component.
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
@@ -50,6 +63,7 @@ function OrderSearch({ bgColor, foreColor, searchChange, orderChange }) {
       height: "30px",
     }),
   };
+
   return (
     <div
       className="order-search-container"
@@ -58,14 +72,10 @@ function OrderSearch({ bgColor, foreColor, searchChange, orderChange }) {
         color: `${foreColor}`,
       }}
     >
-      <div
-        className="order-container"
-        // style={{
-        //   background: `${bgColor}`,
-        //   color: `${foreColor}`,
-        // }}
-      >
+      {/* Order Section */}
+      <div className="order-container">
         <label>Order:</label>
+        {/* third-party component react-select */}
         <Select
           styles={customStyles}
           options={orderOptions}
@@ -73,6 +83,8 @@ function OrderSearch({ bgColor, foreColor, searchChange, orderChange }) {
           onChange={(e) => orderChange(e.value)}
         />
       </div>
+
+      {/* Search Section */}
       <div
         className="search-container"
         style={{
@@ -83,7 +95,7 @@ function OrderSearch({ bgColor, foreColor, searchChange, orderChange }) {
         <BiSearchAlt2 className="search-icon" />
         <input
           type="input"
-          placeholder="Search Clubs"
+          placeholder={searchPlaceholder}
           onChange={(e) => searchChange(e.target.value)}
         />
       </div>

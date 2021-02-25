@@ -1,11 +1,22 @@
 // this component represents a full functionality of NavBar.
 // contains:
-// - header: which contains the (back button, title, some options with it functionality, show menu option)
+// - headerSection: which contains the (back button, title, some options with it functionality, show menu option)
 // - selected option: (this display just in the small screen, to display which option was selected)
-// - options: a set of available options (display in column in small screen, in row in medium screen)
-// this component takes an optional parameters
-// bgColor, foreColor, hoverColor, fontFamily
-// navOptions, headerOption, initialOption
+// - navbar options: a set of available options (display in column in small screen, in row in medium screen)
+// Own State:
+// -	showOptions: (Boolean) toggle show or hide the options in bottom when click on the menu icon.
+// -	selectedOption: (String) specify the selected option. It changes when click on any option in the navbar options.
+// Props:
+// -	initialOption: specify the selected option when the nav render for the first time.
+// -	headerOptions: (Array [{}] of object, each object contains two properties, title, onclick),
+//    the options that will display on the header section at the top.
+// -	navOptions: (Array [String]), the options that will display on the nav bar section at the bottom of the component.
+// -	title: (String), the title of the page .
+// -	bgColor: (String) the color of the background.
+// -	foreColor: (String) the color of the text.
+// -	hoverColor: (String) the color of the text when hover over an option, and the color for the selectedOption.
+// -	fontFamily
+// -	onChangeNavOption: handler to execute when you click on an option in nav bar section at the bottom.
 
 // library
 import { useState } from "react";
@@ -15,9 +26,6 @@ import styled from "styled-components";
 // icons
 import { BiMenu } from "react-icons/bi";
 import { BsArrowLeftShort } from "react-icons/bs";
-
-// style
-// import "./nav-admin.style.scss";
 
 const HoverDiv = styled.div`
   &:hover {

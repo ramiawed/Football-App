@@ -50,12 +50,6 @@ function CompetitionPage({ clubsHasChange, changeOption }) {
     changeOption("competition", opt);
   };
 
-  // useEffect(() => {
-  //   return () => {
-  //     clubsHasChange();
-  //   };
-  // }, [clubsHasChange]);
-
   return (
     <>
       {selectedCompetition === null ? (

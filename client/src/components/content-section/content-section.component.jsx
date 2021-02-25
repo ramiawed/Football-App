@@ -25,6 +25,9 @@ function ContentSection({ page }) {
     (state) => state.navOptions
   );
 
+  const { selectedClub } = useSelector((state) => state.clubs);
+  const { selectedCompetition } = useSelector((state) => state.competitions);
+
   const renderCompetitionComponent = () => {
     switch (competitionOptions) {
       case CONSTANTS.COMPETITION_STANDINGS:
@@ -50,7 +53,13 @@ function ContentSection({ page }) {
   const renderClubDetailsComponent = () => {
     switch (clubDetailsOptions) {
       case CONSTANTS.CLUB_INFO:
-        return <ClubDetails />;
+        return (
+          <ClubDetails
+            club={selectedClub}
+            backupColor={`${selectedCompetition.color}`}
+            isAdmin={false}
+          />
+        );
 
       case CONSTANTS.CLUB_PLAYERS:
         return null;

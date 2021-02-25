@@ -1,3 +1,10 @@
+// this component will display in clubs page
+// while the clubs is retrieving from DB
+
+// Props:
+// - bgColor
+
+// style
 import "./club-loader.style.scss";
 
 function ClubLoader({ bgColor }) {

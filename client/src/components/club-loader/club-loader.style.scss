@@ -48,26 +48,26 @@
     height: 100%;
     animation: moveMotion 2s infinite;
 
+    @keyframes moveMotion {
+      0% {
+        transform: translateX(-150%);
+      }
+
+      50% {
+        transform: translateX(-60%);
+      }
+
+      100% {
+        transform: translateX(150%);
+      }
+    }
+
     & .motion {
       width: 75%;
       height: 100%;
       background: rgba(255, 255, 255, 0.3);
       transform: skewX(-20deg);
       box-shadow: 0 0 30px 30px rgba(255, 255, 255, 0.5);
-    }
-  }
-
-  @keyframes moveMotion {
-    0% {
-      transform: translateX(-150%);
-    }
-
-    50% {
-      transform: translateX(-60%);
-    }
-
-    100% {
-      transform: translateX(150%);
     }
   }
 }
